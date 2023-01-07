@@ -1,0 +1,17 @@
+version: '3'
+
+services:
+    app:
+        build:
+            context: .
+            dockerfile: docker/php/Dockerfile # docker build -t slim-php -f docker/php/Dockerfile .
+        volumes:
+            - .:/srv/app
+    nginx:
+        build:
+            context: .
+            dockerfile: docker/nginx/Dockerfile # docker build -t slim-nginx -f docker/nginx/Dockerfile .
+        ports:
+            - 80:80
+        volumes:
+            - .:/srv/app/
